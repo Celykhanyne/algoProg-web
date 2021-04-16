@@ -25,8 +25,9 @@ export default {
     }
   },
   methods: {
-    updateUrl(newUrl) {
+    updateURL(newUrl) {
       this.myUrl=newUrl
+      console.log("test")
     },
 },
 }

@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  emits:["newUrl"],
   data(){
     return{
       render:null
