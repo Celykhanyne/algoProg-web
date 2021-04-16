@@ -2,19 +2,21 @@
 <div>
   <load-file @new-url="updateURL"></load-file>
   <ascii-display :imgURL="myUrl"></ascii-display>
+  <download-file img=""></download-file>
 </div>
 </template>
 
 <script>
 import AsciiDisplay from './components/AsciiDisplay.vue'
 import LoadFile from './components/LoadFile.vue'
+import DownloadFile from './components/DownloadFile.vue'
 
 export default {
   name: 'App',
   components: {
     LoadFile,
-    AsciiDisplay
-
+    AsciiDisplay,
+    DownloadFile
   },
   data(){
     return{
@@ -26,6 +28,7 @@ export default {
       this.myUrl=newUrl
     },
 },
+
 }
 </script>
 
