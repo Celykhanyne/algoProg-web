@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div>
+  <load-file @new-url="updateURL"></load-file>
+  <ascii-display :imgURL="myUrl"></ascii-display>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AsciiDisplay from './components/AsciiDisplay.vue'
+import LoadFile from './components/LoadFile.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    LoadFile,
+    AsciiDisplay
+
+  },
+  data(){
+    return{
+      myUrl:""
+    }
+  },
+  methods: {
+    updateUrl(newUrl) {
+      this.myUrl=newUrl
+    },
+},
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
