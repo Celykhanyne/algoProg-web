@@ -11,6 +11,7 @@ import AsciiDisplay from './components/AsciiDisplay.vue'
 import LoadFile from './components/LoadFile.vue'
 import DownloadFile from './components/DownloadFile.vue'
 
+
 export default {
   name: 'App',
   components: {
@@ -28,7 +29,6 @@ export default {
       this.myUrl=newUrl
     },
 },
-
 }
 </script>
 
