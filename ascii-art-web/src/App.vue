@@ -1,31 +1,36 @@
 <template>
-  <div>
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <DownloadFile img=""/>
-  </div>
+<div>
+  <load-file @new-url="updateURL"></load-file>
+  <ascii-display :imgURL="myUrl"></ascii-display>
+  <download-file img=""></download-file>
+</div>
 </template>
 
 <script>
+import AsciiDisplay from './components/AsciiDisplay.vue'
+import LoadFile from './components/LoadFile.vue'
 import DownloadFile from './components/DownloadFile.vue'
-//import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
+    LoadFile,
+    AsciiDisplay,
     DownloadFile
-  }
+  },
+  data(){
+    return{
+      myUrl:""
+    }
+  },
+  methods: {
+    updateUrl(newUrl) {
+      this.myUrl=newUrl
+    },
+},
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
