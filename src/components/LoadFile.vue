@@ -2,7 +2,6 @@
 <form>
     <label for="chooseImageBtn">choisir une image</label>
     <input id="chooseImageBtn" @change="getImage" type="file" accept="image/png, image/jpeg/" >
-    <img :src="render">
 </form>
 </template>
 
@@ -14,6 +13,12 @@ export default {
       render:null
     }
   },
+    mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'dist/aalib.js')
+      recaptchaScript.setAttribute('type',"text/javascript")
+      document.head.appendChild(recaptchaScript)
+    },
     methods: {
     getImage(event)
     {
@@ -21,7 +26,6 @@ export default {
       reader.onload=(e) => {
         this.render = e.target.result;
         this.$emit('newUrl', this.render);
-        console.log(e.target.result,this)
       }
       reader.readAsDataURL(event.target.files[0]);
     }
