@@ -12,21 +12,18 @@
 export default {
   name: 'DownloadFile',
   methods: {
-      onClickDwnloadFile(ev) {
-          console.log(ev)
+      onClickDwnloadFile() {
+        let a = document.createElement('a');
+        a.href = this.img;
+        a.download = "output.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
   },
   props: {
       img: String
   }
-//   props: {
-//     msg: String
-//   }
-// data: function () {
-//     return {
-
-//     }
-// }
 }
 </script>
 
