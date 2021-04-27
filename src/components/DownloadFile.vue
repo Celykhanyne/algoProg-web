@@ -19,14 +19,6 @@ export default {
   props: {
       img: String
   }
-//   props: {
-//     msg: String
-//   }
-// data: function () {
-//     return {
-
-//     }
-// }
 }
 </script>
 

@@ -2,7 +2,7 @@
 <div>
   <load-file @new-url="updateURL"></load-file>
   <ascii-display :imgURL="myUrl"></ascii-display>
-  <download-file img=""></download-file>
+  <download-file :img="myUrl"></download-file>
 </div>
 </template>
 
