@@ -15,7 +15,7 @@ import DownloadFile from './components/DownloadFile.vue'
 export default {
   name: 'App',
   components: {
-    LoadFile,
+    LoadFile, // TODO définir une limite de taille d'image pour éviter les mauvaises surprises
     AsciiDisplay,
     DownloadFile
   },
