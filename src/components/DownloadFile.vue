@@ -13,8 +13,6 @@ export default {
   name: 'DownloadFile',
   methods: {
       onClickDwnloadFile() {
-      //   console.log("oui", ev)
-      //   console.log(this.img)
         let a = document.createElement('a');
         a.href = this.img;
         a.download = "output.png";

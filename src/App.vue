@@ -21,12 +21,12 @@ export default {
   },
   data(){
     return{
-      myUrl:""
+      myUrl:"" // TODO give not the url of the upload, but the result of the ascii conversion to the download component
     }
   },
   methods: {
     updateURL(newUrl) {
-      this.myUrl=newUrl
+      this.myUrl=newUrl 
     },
 },
 }
