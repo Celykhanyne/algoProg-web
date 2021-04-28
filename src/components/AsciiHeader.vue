@@ -14,4 +14,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  header {
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top:8%;
+    margin-bottom:3%;
+  }
 </style>

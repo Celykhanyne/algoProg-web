@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="main-div">
   <ascii-header></ascii-header>
   <load-file @new-url="updateURL"></load-file>
   <ascii-display :imgURL="myUrl"></ascii-display>
@@ -39,4 +39,33 @@ export default {
 </script>
 
 <style>
+  #main-div {
+    font: 1.2em "Fira Sans", sans-serif;
+
+    /* min-height:100vh; */
+
+    display:flex;
+    flex-direction:column;
+    justify-content:stretch;
+    align-items: center;
+  }
+
+  
+  button {
+    font-size: 1em;
+    background-color: #e7e7e7;
+    border: none;
+    padding-top:3%;
+    padding-bottom:3%;
+
+    transition-duration: 0.4s;
+
+  }
+
+  button:hover {
+    background-color: #555555;
+    color:white;
+  }
+
+
 </style>
