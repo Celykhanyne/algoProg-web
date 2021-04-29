@@ -22,6 +22,7 @@ export default {
     methods: {
     getImage(event)
     {
+      console.log(event)
       let reader = new FileReader(event.target.files[0]);
       reader.onload=(e) => {
         this.render = e.target.result;

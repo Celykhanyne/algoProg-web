@@ -1,30 +1,54 @@
 <template>
-<div>
-    <img :src="imgURL" class="collapse-img" />
-    <img class=".aa-image" />
+<div id="display">
+    <img :src="image" class="collapse-img" />
 </div>
 </template>
 
 <script>
 const aalib = require("aalib.js");
+let image;
 export default {
+  data(){
+    return{
+      image:image
+    }
+  },
     props: {
     imgURL: String,
   },
   methods:{
     OnImgUrlChange(){
       console.log(this.imgURL);
-          let test = aalib.read.image.fromHTMLImage(document.querySelector(".collapse-img"))
-    .map(aalib.filter.contrast(0.9))
-    .map(aalib.aa({ width: 530, height: 160 }))
-    .map(aalib.filter.brightness(10))
-    .map(aalib.render.html({ el: document.querySelector(".aa-image") }))
-    console.log(test);
-    test.subscribe();
+    var byteString = atob(this.imgURL.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = this.imgURL.split(',')[0].split(':')[1].split(';')[0]
+
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    // write the ArrayBuffer to a blob, and you're done
+    let blob = new Blob([ab], {type: mimeString});
+
+      let url = URL.createObjectURL(blob);
+      this.image = url
+      aalib.read.image.fromURL(url)
+        .map(aalib.filter.contrast(0.9))
+        .map(aalib.aa({ width: 300, height: 90 }))
+        .map(aalib.filter.brightness(10))
+        .map(aalib.render.html({ fontFamily: "Ubuntu Mono, monospace"}))
+        .do(function (el) {
+          document.querySelector("#display").appendChild(el);
+        }).subscribe();
     }
   },
   watch:{
     imgURL: function () {
+      console.log(this.imgURL)
       this.OnImgUrlChange();
     }
   }
