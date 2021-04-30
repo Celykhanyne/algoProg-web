@@ -20,7 +20,7 @@ export default {
     flex-direction: column;
     justify-content: center;
 
-    margin-top:8%;
+    margin-top:5%;
     margin-bottom:3%;
   }
 </style>

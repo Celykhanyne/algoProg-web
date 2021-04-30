@@ -1,8 +1,8 @@
 <template>
-<form>
-    <label for="chooseImageBtn">choisir une image</label>
+<div>
+    <h1>Choose your image</h1>
     <input id="chooseImageBtn" @change="getImage" type="file" accept="image/png, image/jpeg/" >
-</form>
+</div>
 </template>
 
 <script>
@@ -36,5 +36,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  input {
+    margin-left:15%;
+  }
 
 </style>
