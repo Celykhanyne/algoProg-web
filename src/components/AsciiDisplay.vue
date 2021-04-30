@@ -66,7 +66,6 @@ export default {
 <style scoped>
   h1 {
     margin-top: 5%;
-    margin-left: 10%;
   }
 
   img {
