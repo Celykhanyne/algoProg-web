@@ -11,6 +11,7 @@ const aalib = require("aalib.js");
 export default {
     props: {
     imgURL: String,
+    camLinkUrl:String,
   },
   methods:{
     OnImgUrlChange(){
@@ -37,11 +38,25 @@ export default {
         .map(aalib.filter.brightness(10))
         .map(aalib.render.html({ el: document.querySelector(".aa-image")}))
         .subscribe();
+    },
+    SetAsciiCam(){
+      let url = this.camLinkUrl;
+      console.log(url)
+      this.image = url
+      aalib.read.image.fromURL(url)
+        .map(aalib.filter.contrast(0.9))
+        .map(aalib.aa({ width: 250, height: 90 }))
+        .map(aalib.filter.brightness(10))
+        .map(aalib.render.html({ el: document.querySelector(".aa-image")}))
+        .subscribe();
     }
   },
   watch:{
     imgURL: function () {
       this.OnImgUrlChange();
+    },
+    camLinkUrl: function() {
+      this.SetAsciiCam();
     }
   }
 }

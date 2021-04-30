@@ -26,6 +26,7 @@ export default {
       let reader = new FileReader(event.target.files[0]);
       reader.onload=(e) => {
         this.render = e.target.result;
+        console.log(this)
         this.$emit('newUrl', this.render);
       }
       reader.readAsDataURL(event.target.files[0]);

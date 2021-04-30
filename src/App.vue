@@ -1,8 +1,8 @@
 <template>
 <div>
-  <cam-component></cam-component>
+  <cam-component @cam-send="camUrlUp"></cam-component>
   <load-file @new-url="updateURL"></load-file>
-  <ascii-display :imgURL="myUrl"></ascii-display>
+  <ascii-display :imgURL="myUrl" :camLinkUrl="camLink"></ascii-display>
   <download-file img=""></download-file>
 </div>
 </template>
@@ -24,13 +24,18 @@ export default {
   },
   data(){
     return{
-      myUrl:""
+      myUrl:"",
+      camLink:""
     }
   },
   methods: {
     updateURL(newUrl) {
       this.myUrl=newUrl
     },
+    camUrlUp(camUrlSend)
+    {
+      this.camLink = camUrlSend
+    }
 },
 }
 </script>

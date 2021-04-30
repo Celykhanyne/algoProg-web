@@ -3,7 +3,8 @@
     <button v-on:click="startWebcam()">Start WebCam</button>
     <button v-on:click="stopWebcam()">Stop WebCam</button> 
     <button v-on:click="snapshot()">Take Snapshot</button> 
-    <video v-on:click="snapshot(this)" width=400 height=400 id="video" controls autoplay></video>
+    <a class="startHidden"></a>
+    <video v-on:click="snapshot()" width=400 height=400 id="video" controls autoplay></video>
     <canvas  id="myCanvas" width="400" height="350"></canvas> 
 </div>
 </template>
@@ -17,6 +18,7 @@
                 navigator.mozGetUserMedia ||
                 navigator.msGetUserMedia);
 export default {
+    emits:["camSend"],
     mounted:function(){
         this.init()
   },
@@ -61,7 +63,13 @@ export default {
       snapshot() {
          // Draws current image from the video element into the canvas
         ctx.drawImage(video, 0,0, canvas.width, canvas.height);
-        
+        canvas.toBlob(function(blob){
+            var a = document.querySelector('a');
+            a.href =URL.createObjectURL(blob);
+            document.body.appendChild(a);
+        },'image/png');
+        var a = document.querySelector('a');
+        this.$emit('camSend', a.href);
       }
     }
 }
