@@ -1,5 +1,5 @@
 <template>
-  <div class="download-file">
+  <div id="download-file">
     <h1>Download file</h1>
     <p>
       To save your beautiful piece of art ~
@@ -12,38 +12,41 @@
 export default {
   name: 'DownloadFile',
   methods: {
-      onClickDwnloadFile(ev) {
-          console.log(ev)
+      onClickDwnloadFile() {
+        let a = document.createElement('a');
+        a.href = this.img;
+        a.download = "output.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
   },
   props: {
       img: String
   }
-//   props: {
-//     msg: String
-//   }
-// data: function () {
-//     return {
-
-//     }
-// }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
+  #download-file {
+    margin-top: 2%;
+    margin-bottom: 3%;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+  padding-left: 4%;;
+  margin-bottom: -1%;
+  }
+
+  button {
+    padding-left: -10%;
+    padding-right: -10%;
+    
+  }
+
 </style>
