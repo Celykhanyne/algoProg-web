@@ -4,15 +4,15 @@
     <button v-on:click="stopWebcam()">Stop WebCam</button> 
     <button v-on:click="snapshot()">Take Snapshot</button> 
     <a class="startHidden"></a>
-    <video v-on:click="snapshot()" width=400 height=400 id="video" controls autoplay></video>
-    <canvas  id="myCanvas" width="400" height="350"></canvas> 
+    <video width=400 height=400 id="video" controls autoplay></video>
+    <canvas class="startHidden" id="myCanvas" width="400" height="350"></canvas> 
 </div>
 </template>
 
 <script>
       var video;
-      var webcamStream;
       var canvas, ctx;
+      let localstream;
       navigator.getUserMedia = ( navigator.getUserMedia ||
                 navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia ||
@@ -35,6 +35,7 @@ export default {
 
               // successCallback
               function(stream) {
+                localstream = stream;
                 video = document.querySelector('video');
                 video.srcObject = stream;
                 video.play();
@@ -50,7 +51,7 @@ export default {
         }  
       },
       stopWebcam() {
-          webcamStream.stop();
+        localstream.getTracks()[0].stop();
       },
       //---------------------
       // TAKE A SNAPSHOT CODE
@@ -68,7 +69,9 @@ export default {
             a.href =URL.createObjectURL(blob);
             document.body.appendChild(a);
         },'image/png');
+        
         var a = document.querySelector('a');
+        console.log(a.href)
         this.$emit('camSend', a.href);
       }
     }
