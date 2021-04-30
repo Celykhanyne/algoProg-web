@@ -1,7 +1,7 @@
 <template>
 <header>
   <h1>Ascii Generator</h1>
-  <img src="" alt="ASCII logo">
+  <img src="../assets/ascii-logo.png" alt="ASCII logo">
   <p>Transform your pictures into ASCII art !</p>
 </header>
 </template>
@@ -20,7 +20,14 @@ export default {
     flex-direction: column;
     justify-content: center;
 
-    margin-top:8%;
-    margin-bottom:3%;
+    margin-top:5%;
+  }
+
+  h1 {
+    margin-left:10%;
+  }
+
+  img {
+    margin-left: -5%;
   }
 </style>
