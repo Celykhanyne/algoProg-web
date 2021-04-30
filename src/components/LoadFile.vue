@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>Choose your image</h1>
+    <h1>...Or you can choose any png/jpg image</h1>
     <input id="chooseImageBtn" @change="getImage" type="file" accept="image/png, image/jpeg/" >
 </div>
 </template>
@@ -26,6 +26,7 @@ export default {
       let reader = new FileReader(event.target.files[0]);
       reader.onload=(e) => {
         this.render = e.target.result;
+        console.log(this)
         this.$emit('newUrl', this.render);
       }
       reader.readAsDataURL(event.target.files[0]);
@@ -37,7 +38,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   input {
-    margin-left:15%;
+    margin-left:30%;
   }
 
 </style>

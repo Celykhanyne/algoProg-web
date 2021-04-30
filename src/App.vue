@@ -1,10 +1,9 @@
 <template>
 <div id="main-div">
   <ascii-header></ascii-header>
-  <!-- <cam-component></cam-component> -->
+  <cam-component @cam-send="camUrlUp"></cam-component>
   <load-file @new-url="updateURL"></load-file>
-  <ascii-display :imgURL="myUrl"></ascii-display>
-  <download-file :img="myUrl"></download-file>
+  <ascii-display :imgURL="myUrl" :camLinkUrl="camLink"></ascii-display>
   <ascii-footer></ascii-footer>
 </div>
 </template>
@@ -12,8 +11,7 @@
 <script>
 import AsciiDisplay from './components/AsciiDisplay.vue'
 import LoadFile from './components/LoadFile.vue'
-import DownloadFile from './components/DownloadFile.vue'
-// import CamComponent from './components/camComponent.vue'
+import CamComponent from './components/camComponent.vue'
 import AsciiFooter from './components/AsciiFooter.vue'
 import AsciiHeader from './components/AsciiHeader.vue'
 
@@ -21,22 +19,26 @@ import AsciiHeader from './components/AsciiHeader.vue'
 export default {
   name: 'App',
   components: {
-    LoadFile, // TODO définir une limite de taille d'image pour éviter les mauvaises surprises
+    LoadFile,
     AsciiDisplay,
-    // CamComponent,
-    DownloadFile,
+    CamComponent,
     AsciiFooter,
     AsciiHeader,
   },
   data(){
     return{
-      myUrl:"" // TODO give not the url of the upload, but the result of the ascii conversion to the download component
+      myUrl:"",
+      camLink:""
     }
   },
   methods: {
     updateURL(newUrl) {
       this.myUrl=newUrl 
     },
+    camUrlUp(camUrlSend)
+    {
+      this.camLink = camUrlSend
+    }
 },
 }
 </script>
@@ -45,11 +47,8 @@ export default {
   #main-div {
     font: 1.2em "Fira Sans", sans-serif;
 
-    /* min-height:100vh; */
-
     display:flex;
     flex-direction:column;
-    justify-content:stretch;
     align-items: center;
   }
 

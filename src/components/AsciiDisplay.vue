@@ -1,8 +1,8 @@
 <template>
 <div id="display">
     <img :src="image" class="collapse-img" />
-    <pre class="aa-image">
-    </pre>
+    <pre class="aa-image"></pre>
+    <h1>...And now you can screen your result ! (★‿★)</h1>
 </div>
 </template>
 
@@ -11,6 +11,7 @@ const aalib = require("aalib.js");
 export default {
     props: {
     imgURL: String,
+    camLinkUrl:String,
   },
   methods:{
     OnImgUrlChange(){
@@ -37,11 +38,25 @@ export default {
         .map(aalib.filter.brightness(10))
         .map(aalib.render.html({ el: document.querySelector(".aa-image")}))
         .subscribe();
+    },
+    SetAsciiCam(){
+      let url = this.camLinkUrl;
+      console.log(url)
+      this.image = url
+      aalib.read.image.fromURL(url)
+        .map(aalib.filter.contrast(0.9))
+        .map(aalib.aa({ width: 250, height: 90 }))
+        .map(aalib.filter.brightness(10))
+        .map(aalib.render.html({ el: document.querySelector(".aa-image")}))
+        .subscribe();
     }
   },
   watch:{
     imgURL: function () {
       this.OnImgUrlChange();
+    },
+    camLinkUrl: function() {
+      this.SetAsciiCam();
     }
   }
 }
@@ -49,5 +64,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  h1 {
+    margin-top: 5%;
+    margin-left: 10%;
+  }
 
+  img {
+    margin-left: 25%;
+  }
 </style>
