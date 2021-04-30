@@ -1,5 +1,6 @@
 <template>
 <div>
+  <cam-component></cam-component>
   <load-file @new-url="updateURL"></load-file>
   <ascii-display :imgURL="myUrl"></ascii-display>
   <download-file img=""></download-file>
@@ -10,6 +11,7 @@
 import AsciiDisplay from './components/AsciiDisplay.vue'
 import LoadFile from './components/LoadFile.vue'
 import DownloadFile from './components/DownloadFile.vue'
+import CamComponent from './components/camComponent.vue'
 
 
 export default {
@@ -17,7 +19,8 @@ export default {
   components: {
     LoadFile,
     AsciiDisplay,
-    DownloadFile
+    DownloadFile,
+    CamComponent
   },
   data(){
     return{

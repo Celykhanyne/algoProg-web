@@ -1,24 +1,19 @@
 <template>
 <div id="display">
     <img :src="image" class="collapse-img" />
+    <pre class="aa-image">
+    </pre>
 </div>
 </template>
 
 <script>
 const aalib = require("aalib.js");
-let image;
 export default {
-  data(){
-    return{
-      image:image
-    }
-  },
     props: {
     imgURL: String,
   },
   methods:{
     OnImgUrlChange(){
-      console.log(this.imgURL);
     var byteString = atob(this.imgURL.split(',')[1]);
 
     // separate out the mime component
@@ -38,17 +33,14 @@ export default {
       this.image = url
       aalib.read.image.fromURL(url)
         .map(aalib.filter.contrast(0.9))
-        .map(aalib.aa({ width: 300, height: 90 }))
+        .map(aalib.aa({ width: 250, height: 90 }))
         .map(aalib.filter.brightness(10))
-        .map(aalib.render.html({ fontFamily: "Ubuntu Mono, monospace"}))
-        .do(function (el) {
-          document.querySelector("#display").appendChild(el);
-        }).subscribe();
+        .map(aalib.render.html({ el: document.querySelector(".aa-image")}))
+        .subscribe();
     }
   },
   watch:{
     imgURL: function () {
-      console.log(this.imgURL)
       this.OnImgUrlChange();
     }
   }
