@@ -1,8 +1,10 @@
 <template>
-<div>
+<div id="main-div">
+  <ascii-header></ascii-header>
   <load-file @new-url="updateURL"></load-file>
   <ascii-display :imgURL="myUrl"></ascii-display>
   <download-file :img="myUrl"></download-file>
+  <ascii-footer></ascii-footer>
 </div>
 </template>
 
@@ -10,6 +12,8 @@
 import AsciiDisplay from './components/AsciiDisplay.vue'
 import LoadFile from './components/LoadFile.vue'
 import DownloadFile from './components/DownloadFile.vue'
+import AsciiFooter from './components/AsciiFooter.vue'
+import AsciiHeader from './components/AsciiHeader.vue'
 
 
 export default {
@@ -17,7 +21,9 @@ export default {
   components: {
     LoadFile, // TODO définir une limite de taille d'image pour éviter les mauvaises surprises
     AsciiDisplay,
-    DownloadFile
+    DownloadFile,
+    AsciiFooter,
+    AsciiHeader,
   },
   data(){
     return{
@@ -33,4 +39,33 @@ export default {
 </script>
 
 <style>
+  #main-div {
+    font: 1.2em "Fira Sans", sans-serif;
+
+    /* min-height:100vh; */
+
+    display:flex;
+    flex-direction:column;
+    justify-content:stretch;
+    align-items: center;
+  }
+
+  
+  button {
+    font-size: 1em;
+    background-color: #e7e7e7;
+    border: none;
+    padding-top:3%;
+    padding-bottom:3%;
+
+    transition-duration: 0.4s;
+
+  }
+
+  button:hover {
+    background-color: #555555;
+    color:white;
+  }
+
+
 </style>
